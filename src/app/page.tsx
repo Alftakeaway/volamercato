@@ -11,7 +11,7 @@ export default function Home() {
       left: "18.3%", 
       width: "15.8%", 
       height: "31.5%",
-      pdfUrl: "https://www.eurospin.it/volantino/promotion?code=202620IT",
+      pdfUrl: "/pdf/EIT-OLBIA_GASTRO.pdf",
       colore: "from-green-500 to-green-700"
     },
     { 
@@ -22,7 +22,7 @@ export default function Home() {
       left: "41.8%", 
       width: "16%", 
       height: "31.5%",
-      pdfUrl: "https://promo.supermercatipan.it/punti-vendita/oristano/promozioni/sconti-30-40-50-1/pdf",
+      pdfUrl: "/pdf/superpan-volantino.pdf",
       colore: "from-red-500 to-red-700"
     },
     { 
@@ -137,7 +137,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Bottone di Download (usando <a> invece di onClick per evitare blocchi pop-up) */}
+                {/* Bottone di Download */}
                 <a 
                   href={volantino.pdfUrl}
                   target="_blank"
