@@ -11,7 +11,8 @@ export default function Home() {
       left: "18.3%", 
       width: "15.8%", 
       height: "31.5%",
-      pdfUrl: "https://www.eurospin.it/volantino/promotion?code=202620IT"
+      pdfUrl: "https://www.eurospin.it/volantino/promotion?code=202620IT",
+      colore: "from-green-500 to-green-700"
     },
     { 
       id: 2, 
@@ -21,7 +22,8 @@ export default function Home() {
       left: "41.8%", 
       width: "16%", 
       height: "31.5%",
-      pdfUrl: "https://promo.supermercatipan.it/punti-vendita/oristano/promozioni/sconti-30-40-50-1/pdf"
+      pdfUrl: "https://promo.supermercatipan.it/punti-vendita/oristano/promozioni/sconti-30-40-50-1/pdf",
+      colore: "from-red-500 to-red-700"
     },
     { 
       id: 3, 
@@ -31,7 +33,8 @@ export default function Home() {
       left: "65.9%", 
       width: "15.8%", 
       height: "31.5%",
-      pdfUrl: "https://www.conad.it/assets/common/volantini/cno/v20262/20262618ASPAZIOCONADSARDEGNA.pdf?_u=b32758261c699c9b72b16980c41056e992ccc02f"
+      pdfUrl: "https://www.conad.it/assets/common/volantini/cno/v20262/20262618ASPAZIOCONADSARDEGNA.pdf?_u=b32758261c699c9b72b16980c41056e992ccc02f",
+      colore: "from-blue-500 to-blue-700"
     },
     // Piano inferiore
     { 
@@ -42,7 +45,8 @@ export default function Home() {
       left: "18.2%", 
       width: "15.8%", 
       height: "31.5%",
-      pdfUrl: "https://strapi.crai.it/uploads/LR_AP_19_EXTRA_SARDEGNA_2a7a231ffe.pdf"
+      pdfUrl: "https://strapi.crai.it/uploads/LR_AP_19_EXTRA_SARDEGNA_2a7a231ffe.pdf",
+      colore: "from-yellow-500 to-orange-600"
     },
     { 
       id: 5, 
@@ -52,7 +56,8 @@ export default function Home() {
       left: "41.8%", 
       width: "16%", 
       height: "31.5%",
-      pdfUrl: "https://assets.leaflets.schwarz/leaflets/pdfs/019ffb0d-ba97-7ae5-8139-40315ff9ed6f/Offerte-valide-dal-20-08-al-26-08-Volantino-settimanale-00.pdf"
+      pdfUrl: "https://assets.leaflets.schwarz/leaflets/pdfs/019ffb0d-ba97-7ae5-8139-40315ff9ed6f/Offerte-valide-dal-20-08-al-26-08-Volantino-settimanale-00.pdf",
+      colore: "from-blue-600 to-indigo-800"
     },
     { 
       id: 6, 
@@ -62,7 +67,8 @@ export default function Home() {
       left: "65.8%", 
       width: "15.8%", 
       height: "30.8%",
-      pdfUrl: "https://www.palumboadv.it/nonnaisa/contenuto_app/volantini_pdf/nonnaisa_iper_oristano.pdf"
+      pdfUrl: "https://www.palumboadv.it/nonnaisa/contenuto_app/volantini_pdf/nonnaisa_iper_oristano.pdf",
+      colore: "from-purple-500 to-purple-700"
     },
   ];
 
@@ -98,9 +104,9 @@ export default function Home() {
 
             return (
               <div key={volantino.id}>
-                {/* Card dentro la finestra */}
+                {/* Card Anteprima Volantino */}
                 <div 
-                  className="absolute bg-white/90 backdrop-blur-sm flex items-center justify-center border-2 border-gray-400 shadow-lg z-10"
+                  className="absolute bg-white rounded-lg shadow-xl overflow-hidden border-2 border-gray-200 z-10 flex flex-col"
                   style={{ 
                     top: volantino.top, 
                     left: volantino.left,
@@ -108,23 +114,35 @@ export default function Home() {
                     height: volantino.height
                   }}
                 >
-                  <div className="text-center p-2">
-                    <div className="text-2xl mb-1">📄</div>
-                    <p className="font-bold text-gray-800 text-xs sm:text-sm">{volantino.supermercato}</p>
-                    <p className="text-[10px] sm:text-xs text-gray-600">{volantino.scadenza}</p>
+                  {/* Fascia colorata superiore (simula la copertina) */}
+                  <div className={`h-2/5 bg-gradient-to-br ${volantino.colore} flex items-center justify-center relative`}>
+                    <span className="text-white font-black text-lg sm:text-xl tracking-widest drop-shadow-md">
+                      VOLANTINO
+                    </span>
+                    <div className="absolute top-2 right-2 bg-yellow-400 text-gray-900 text-[8px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded shadow">
+                      OFFERTE
+                    </div>
+                  </div>
+                  
+                  {/* Corpo della card con info */}
+                  <div className="p-2 sm:p-3 flex-1 flex flex-col justify-center items-center text-center bg-gray-50">
+                    <h3 className="font-black text-gray-800 text-xs sm:text-sm uppercase leading-tight mb-1">
+                      {volantino.supermercato}
+                    </h3>
+                    <div className="w-8 h-0.5 bg-gray-300 mb-2"></div>
+                    <p className="text-[10px] sm:text-xs text-gray-600 font-medium">
+                      Valido fino al: <br/>
+                      <span className="text-red-600 font-bold text-xs sm:text-sm">{volantino.scadenza}</span>
+                    </p>
                   </div>
                 </div>
 
-                {/* Bottone sotto la finestra */}
-                <button 
-                  onClick={() => {
-                    if (volantino.pdfUrl && volantino.pdfUrl !== '#') {
-                      window.open(volantino.pdfUrl, '_blank');
-                    } else {
-                      alert('Volantino di ' + volantino.supermercato + ' in arrivo!');
-                    }
-                  }}
-                  className="absolute bg-blue-600 text-white py-1.5 px-2 rounded text-[10px] sm:text-xs font-semibold hover:bg-blue-700 transition-colors shadow-lg z-20 whitespace-nowrap cursor-pointer"
+                {/* Bottone di Download (usando <a> invece di onClick per evitare blocchi pop-up) */}
+                <a 
+                  href={volantino.pdfUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute bg-blue-600 text-white py-1.5 px-2 rounded text-[10px] sm:text-xs font-semibold hover:bg-blue-700 transition-colors shadow-lg z-20 whitespace-nowrap flex items-center justify-center gap-1 cursor-pointer"
                   style={{ 
                     top: `${bottoneTop}%`, 
                     left: volantino.left,
@@ -132,7 +150,7 @@ export default function Home() {
                   }}
                 >
                   📥 Scarica volantino
-                </button>
+                </a>
               </div>
             );
           })}
