@@ -71,7 +71,7 @@ export default function Home() {
         <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-10 text-gray-800 text-center">
           Volantini attivi questa settimana
         </h2>
-
+ 
         {/* ============================================ */}
         {/* LAYOUT MOBILE: Griglia di card (2 colonne)   */}
         {/* ============================================ */}
