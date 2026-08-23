@@ -75,7 +75,7 @@ export default function Home() {
         {/* ============================================ */}
         {/* LAYOUT MOBILE: Griglia di card (2 colonne)   */}
         {/* ============================================ */}
-        <div className="md:hidden grid grid-cols-1 gap-3 max-w-sm mx-auto">
+        <div className="md:hidden grid grid-cols-1 gap-3 max-w-[320px] mx-auto px-2">
           {volantini.map((volantino) => (
             <div 
               key={volantino.id}
